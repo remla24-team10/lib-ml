@@ -6,7 +6,7 @@ on: push
 
 jobs:
   test:
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
