@@ -2,8 +2,6 @@
 Provides functions to preprocess data.
 
 """
-import os
-import sys
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 from keras._tf_keras.keras.preprocessing.text import Tokenizer

@@ -11,14 +11,16 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "~3.11"
-keras = "3.3.3"
 tensorflow-io-gcs-filesystem = [
     {platform = "darwin", version = "~0.36.0"},
     {platform = "linux", version = "~0.31.0"},
     {platform = "win32", version = "~0.31.0"},
 ]
-tensorflow = "~2.16.1"
+tensorflow = {version = "~2.16.1" }
+tensorflow-intel = { version = "~2.16.1", platform = "win32" }
+keras = "3.3.3"
 scikit-learn = "1.2.2"
+
 
 [tool.poetry.group.dev]
 optional = true
