@@ -14,27 +14,23 @@ jobs:
       matrix:
         include:
           - name: 'check'
-            python: '3.11'
-            toxpython: 'python3.11'
-            tox_env: 'check'
+            python: '3.9'
+            toxpython: 'python3.9'
             os: 'ubuntu-latest'
-          - name: 'py311 (ubuntu)'
-            python: '3.11'
-            toxpython: 'python3.11'
+          - name: 'py39 (ubuntu)'
+            python: '3.9'
+            toxpython: 'python3.9'
             python_arch: 'x64'
-            tox_env: 'py311'
             os: 'ubuntu-latest'
-          - name: 'py311 (windows)'
-            python: '3.11'
-            toxpython: 'python3.11'
+          - name: 'py39 (windows)'
+            python: '3.9'
+            toxpython: 'python3.9'
             python_arch: 'x64'
-            tox_env: 'py311'
             os: 'windows-latest'
-          - name: 'py311 (macos)'
-            python: '3.11'
-            toxpython: 'python3.11'
+          - name: 'py39 (macos)'
+            python: '3.9'
+            toxpython: 'python3.9'
             python_arch: 'arm64'
-            tox_env: 'py311'
             os: 'macos-latest'
     steps:
     - name: Checkout code
@@ -67,7 +63,7 @@ jobs:
     - name: Set up Python ${{ matrix.python }}
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
+        python-version: '3.9'
     - name: Install Poetry
       run: pipx install poetry || pip install poetry
     - name: Install dependencies
