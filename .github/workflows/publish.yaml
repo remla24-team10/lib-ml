@@ -1,0 +1,89 @@
+name: Bump version
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  test:
+    if: github.event.pull_request.merged == true
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        include:
+          - name: 'check'
+            python: '3.9'
+            toxpython: 'python3.9'
+            os: 'ubuntu-latest'
+          - name: 'py39 (ubuntu)'
+            python: '3.9'
+            toxpython: 'python3.9'
+            python_arch: 'x64'
+            os: 'ubuntu-latest'
+          - name: 'py39 (windows)'
+            python: '3.9'
+            toxpython: 'python3.9'
+            python_arch: 'x64'
+            os: 'windows-latest'
+          - name: 'py39 (macos)'
+            python: '3.9'
+            toxpython: 'python3.9'
+            python_arch: 'arm64'
+            os: 'macos-latest'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.merge_commit_sha }}
+        fetch-depth: '0'
+    - name: Set up Python ${{ matrix.python }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python }}
+    - name: Install Poetry
+      run: pipx install poetry || pip install poetry
+    - name: Install dependencies
+      run: poetry install --with dev
+    - name: Run tests
+      run: poetry run pytest
+
+  bump_version_and_publish:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.merge_commit_sha }}
+        fetch-depth: '0'
+    - name: Set up Python ${{ matrix.python }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9'
+    - name: Install Poetry
+      run: pipx install poetry || pip install poetry
+    - name: Install dependencies
+      run: poetry install --with dev
+    - name: Bump version and push tag
+      if: success() # Only continue if all was successful till now
+      uses: anothrNick/github-tag-action@1.67.0
+      env:
+        GITHUB_TOKEN: ${{secrets.LIB_ML_PAT_CONTENT_ACCESS}}
+        DEFAULT_BUMP: patch
+        TAG_CONTEXT: branch
+        WITH_V: false
+        PRERELEASE: false
+    - name: Update files with new version
+      if: success() # Only continue if tagging was successful
+      run: poetry run bump-my-version replace --config-file pyproject.toml --new-version $(git describe --tags --abbrev=0)
+    - name: Build and publish to PyPI
+      if: success() # Only continue if version in files was updated
+      run: |
+        poetry publish --build -u __token__ -p ${{ secrets.PYPI_API_KEY }}
+        
+  
+    
