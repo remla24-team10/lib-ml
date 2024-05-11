@@ -17,16 +17,18 @@
 </div>
 
 ## Installation
-Inside your virtual environment run:
+> Python 3.9 is needed for this library!
+
+Inside your python 3.9 virtual environment run:
 
 ```bash
-poetry add package_template_tester
+poetry add lib-ml-REMLA10-2024
 ```
 
 or install with `pip`
 
 ```bash
-pip install package_template_tester
+pip install lib-ml-REMLA10-2024
 ```
 
 Now you can import the library inside python modules

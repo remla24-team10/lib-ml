@@ -57,8 +57,8 @@ serialize = [
     "{major}.{minor}.{patch}-beta.{pre_n}",
     "{major}.{minor}.{patch}",
 ]
-current_version = "(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-beta\\.(0|[1-9]\\d*))?"
 regex = true
+current_version = "0.0.0"
 ignore_missing_version = false
 tag = false
 commit = true
@@ -70,6 +70,6 @@ search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
 [[tool.bumpversion.files]]
-filename = "src/lib_ml/__init__.py"
+filename = "src/lib_ml_remla/__init__.py"
 search = '__version__ = "{current_version}"'
 replace = '__version__ = "{new_version}"'

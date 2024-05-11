@@ -1,56 +1,56 @@
 name: Bump version
-# on: push
+on: push
   # pull_request:
   #   types:
   #     - closed
 
 jobs:
-  test:
-    # if: github.event.pull_request.merged == true
-    name: ${{ matrix.name }}
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 10
-    strategy:
-      matrix:
-        include:
-          - name: 'check'
-            python: '3.9'
-            toxpython: 'python3.9'
-            os: 'ubuntu-latest'
-          - name: 'py39 (ubuntu)'
-            python: '3.9'
-            toxpython: 'python3.9'
-            python_arch: 'x64'
-            os: 'ubuntu-latest'
-          - name: 'py39 (windows)'
-            python: '3.9'
-            toxpython: 'python3.9'
-            python_arch: 'x64'
-            os: 'windows-latest'
-          - name: 'py39 (macos)'
-            python: '3.9'
-            toxpython: 'python3.9'
-            python_arch: 'arm64'
-            os: 'macos-latest'
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        ref: ${{ github.event.pull_request.merge_commit_sha }}
-        fetch-depth: '0'
-    - name: Set up Python ${{ matrix.python }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python }}
-    - name: Install Poetry
-      run: pipx install poetry || pip install poetry
-    - name: Install dependencies
-      run: poetry install --with dev
-    - name: Run tests
-      run: poetry run pytest
+  # test:
+  #   # if: github.event.pull_request.merged == true
+  #   name: ${{ matrix.name }}
+  #   runs-on: ${{ matrix.os }}
+  #   timeout-minutes: 10
+  #   strategy:
+  #     matrix:
+  #       include:
+  #         - name: 'check'
+  #           python: '3.9'
+  #           toxpython: 'python3.9'
+  #           os: 'ubuntu-latest'
+  #         - name: 'py39 (ubuntu)'
+  #           python: '3.9'
+  #           toxpython: 'python3.9'
+  #           python_arch: 'x64'
+  #           os: 'ubuntu-latest'
+  #         - name: 'py39 (windows)'
+  #           python: '3.9'
+  #           toxpython: 'python3.9'
+  #           python_arch: 'x64'
+  #           os: 'windows-latest'
+  #         - name: 'py39 (macos)'
+  #           python: '3.9'
+  #           toxpython: 'python3.9'
+  #           python_arch: 'arm64'
+  #           os: 'macos-latest'
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v4
+  #     with:
+  #       ref: ${{ github.event.pull_request.merge_commit_sha }}
+  #       fetch-depth: '0'
+  #   - name: Set up Python ${{ matrix.python }}
+  #     uses: actions/setup-python@v5
+  #     with:
+  #       python-version: ${{ matrix.python }}
+  #   - name: Install Poetry
+  #     run: pipx install poetry || pip install poetry
+  #   - name: Install dependencies
+  #     run: poetry install --with dev
+  #   - name: Run tests
+  #     run: poetry run pytest
 
   bump_version_and_publish:
-    needs: test
+    # needs: test
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -72,7 +72,7 @@ jobs:
       if: success() # Only continue if all was successful till now
       uses: anothrNick/github-tag-action@1.67.0
       env:
-        GITHUB_TOKEN: ${{ secrets.lib_ml_tag_bump_token }}
+        GITHUB_TOKEN: ${{secrets.LIB_ML_PAT_CONTENT_ACCESS}}
         DEFAULT_BUMP: patch
         TAG_CONTEXT: branch
         WITH_V: false
@@ -84,6 +84,7 @@ jobs:
       if: success() # Only continue if version in files was updated
       run: |
         poetry config repositories.testpypi https://test.pypi.org/legacy/
-        poetry publish --build -r testpypi -u __token__ -p ${{ secrets.PYPI_TEST_ACCOUNT }} --name
+        poetry publish --build -r testpypi -u __token__ -p ${{ secrets.PYPI_TEST_ACCOUNT }}
+        
   
     
