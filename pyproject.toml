@@ -10,24 +10,16 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "~3.9"
-keras = [
-    {platform = "darwin", version = "2.15.0"},
-    {platform = "linux", version = "^2.10"},
-    {platform = "win32", version = "^2.10"},
-]
-scikit-learn = "1.2.2"
-tensorflow = [
-    {platform = "darwin", version = "~2.15"},
-    {platform = "linux", version = "~2.10"},
-    {platform = "win32", version = "~2.10"},
-]
-
+python = "~3.11"
 tensorflow-io-gcs-filesystem = [
     {platform = "darwin", version = "~0.36.0"},
-    {platform = "linux", version = "~0.27.0"},
-    {platform = "win32", version = "~0.27.0"},
+    {platform = "linux", version = "~0.31.0"},
+    {platform = "win32", version = "~0.31.0"},
 ]
+tensorflow = {version = "~2.16.1" }
+tensorflow-intel = { version = "~2.16.1", platform = "win32" }
+keras = "3.3.3"
+scikit-learn = "1.2.2"
 
 
 [tool.poetry.group.dev]
