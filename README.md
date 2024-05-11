@@ -31,7 +31,7 @@ py -m poetry add package_template_tester
 Now you can import the library inside python modules
 
 ```python
-from lib_ml_remla import preprocess
+from lib_ml_remla import preprocess_data, split_data
 ```
 
 ## 🛡 License
