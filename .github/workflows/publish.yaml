@@ -86,6 +86,8 @@ jobs:
       run: poetry run bump-my-version replace --config-file pyproject.toml --new-version $(git describe --tags --abbrev=0)
     - name: Build and publish to PyPI
       if: success() # Only continue if version in files was updated
-      run: poetry publish --build -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} --name
+      run: |
+        poetry config repositories.testpypi https://test.pypi.org/legacy/
+        poetry publish --build -r testpypi -u __token__ -p ${{ secrets.PYPI_TEST_ACCOUNT }} --name
   
     
