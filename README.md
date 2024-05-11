@@ -17,15 +17,16 @@
 </div>
 
 ## Installation
+Inside your virtual environment run:
 
 ```bash
-py - m pip install -U package_template_tester
+poetry add package_template_tester
 ```
 
-or install with `Poetry`
+or install with `pip`
 
 ```bash
-py -m poetry add package_template_tester
+pip install package_template_tester
 ```
 
 Now you can import the library inside python modules
