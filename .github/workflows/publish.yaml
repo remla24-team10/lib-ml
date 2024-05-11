@@ -1,5 +1,5 @@
 name: Bump version
-on: push
+# on: push
   # pull_request:
   #   types:
   #     - closed
@@ -72,7 +72,7 @@ jobs:
       if: success() # Only continue if all was successful till now
       uses: anothrNick/github-tag-action@1.67.0
       env:
-        GITHUB_TOKEN: ${{ secrets.lib-ml-tag-bump-token }}
+        GITHUB_TOKEN: ${{ secrets.lib_ml_tag_bump_token }}
         DEFAULT_BUMP: patch
         TAG_CONTEXT: branch
         WITH_V: false
