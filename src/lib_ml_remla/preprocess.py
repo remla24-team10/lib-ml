@@ -6,8 +6,8 @@ import os
 import sys
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
-from keras._tf_keras.keras.preprocessing.text import Tokenizer
-from keras._tf_keras.keras.preprocessing.sequence import pad_sequences
+from keras.preprocessing.text import Tokenizer
+from keras.utils import pad_sequences
 
 
 def split_data(train: list[str], test: list[str], val: list[str]) -> tuple[list[str], list[str], list[str], list[str], list[str], list[str]]:
