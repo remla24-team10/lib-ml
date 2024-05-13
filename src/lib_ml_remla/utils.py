@@ -8,7 +8,8 @@ from sklearn.metrics import classification_report, confusion_matrix,accuracy_sco
 from keras._tf_keras.keras import Model
 
 
-def predict_classes(model: Model, encoder: LabelEncoder, X_test: np.ndarray, threshold: float = 0.5) -> np.ndarray:
+def predict_classes(model: Model, encoder: LabelEncoder, X_test: np.ndarray,
+                    threshold: float = 0.5) -> tuple[np.ndarray, np.ndarray]:
     """
     Predict class labels for samples in x_test.
 
@@ -26,7 +27,7 @@ def predict_classes(model: Model, encoder: LabelEncoder, X_test: np.ndarray, thr
     # Convert predicted probabilities to binary labels
     y_pred_binary = (np.array(y_pred) > threshold).astype(int)
     labels = encoder.inverse_transform(y_pred_binary)
-    return labels
+    return labels, y_pred
 
 def evaluate_results(y_test: np.ndarray, y_pred_binary: np.ndarray) -> dict:
     """
