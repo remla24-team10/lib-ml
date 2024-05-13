@@ -8,7 +8,8 @@ from keras._tf_keras.keras.preprocessing.text import Tokenizer
 from keras._tf_keras.keras.preprocessing.sequence import pad_sequences
 
 
-def split_data(train: list[str], test: list[str], val: list[str]) -> tuple[list[str], list[str], list[str], list[str], list[str], list[str]]:
+def split_data(train: list[str], test: list[str], val: list[str]) -> tuple[list[str], list[str],list[str], list[str],
+                                                                           list[str], list[str], Tokenizer, LabelEncoder]:
     """
     Split the data into training, validation, and test sets.
 
@@ -67,7 +68,7 @@ def preprocess_data(raw_X_train: list[str], raw_y_train: list[str],
     y_val = encoder.transform(raw_y_val)
     y_test = encoder.transform(raw_y_test)
 
-    return X_train, y_train, X_val, y_val, X_test, y_test, char_index
+    return X_train, y_train, X_val, y_val, X_test, y_test, char_index, tokenizer, encoder
 
 def prepare(raw_X_test: np.ndarray, tokenizer: Tokenizer, sequence_length: int=200):
     """
