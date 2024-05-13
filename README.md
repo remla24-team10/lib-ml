@@ -17,9 +17,9 @@
 </div>
 
 ## Installation
-> Python 3.9 is needed for this library!
+> Python 3.11 is needed for this library!
 
-Inside your python 3.9 virtual environment run:
+Inside your python 3.11 virtual environment run:
 
 ```bash
 poetry add lib-ml-REMLA10-2024

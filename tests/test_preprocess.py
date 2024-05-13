@@ -24,7 +24,7 @@ def test_split_data(sample_data):
 def test_preprocess_data(sample_data):
     train, test, val = sample_data
     _, y_train, _, y_val, _, y_test = split_data(train, test, val)
-    X_train, y_train, X_val, y_val, X_test, y_test, char_index = preprocess_data(
+    X_train, y_train, X_val, y_val, X_test, y_test, char_index, tokenizer, encoder = preprocess_data(
         ["The quick brown fox", "jumps over the lazy dog"],
         y_train,
         ["Sed do eiusmod tempor", "incididunt ut labore et dolore magna aliqua"],
