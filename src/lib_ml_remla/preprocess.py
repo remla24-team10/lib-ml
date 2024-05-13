@@ -68,3 +68,17 @@ def preprocess_data(raw_X_train: list[str], raw_y_train: list[str],
     y_test = encoder.transform(raw_y_test)
 
     return X_train, y_train, X_val, y_val, X_test, y_test, char_index
+
+def prepare(raw_X_test: np.ndarray, tokenizer: Tokenizer, sequence_length: int=200):
+    """
+    Preprocesses X_test given a tokenizer
+
+    Args:
+        raw_x_test: Unprocessed test data.
+        tokenizer: Tokenizer used to process the data
+
+    Returns:
+        Processed X_test
+    """
+    X_test = pad_sequences(tokenizer.texts_to_sequences(raw_X_test), maxlen=sequence_length)
+    return X_test
