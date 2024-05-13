@@ -9,7 +9,7 @@ from keras._tf_keras.keras.preprocessing.sequence import pad_sequences
 
 
 def split_data(train: list[str], test: list[str], val: list[str]) -> tuple[list[str], list[str],list[str], list[str],
-                                                                           list[str], list[str], Tokenizer, LabelEncoder]:
+                                                                           list[str], list[str]]:
     """
     Split the data into training, validation, and test sets.
 
