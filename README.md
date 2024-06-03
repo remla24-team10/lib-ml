@@ -36,6 +36,8 @@ Now you can import the library inside python modules
 ```python
 from lib_ml_remla import preprocess_data, split_data
 ```
+## Tests
+To run the tests run the command ```pytest``` from python3.11 virtual environemt. 
 
 ## 🛡 License
 
