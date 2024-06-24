@@ -1,10 +1,11 @@
-name: Bump version
+name: Test
 on:
   pull_request:
     types:
       - opened
       - synchronize
       - reopened
+  push:
 
 jobs:
   test:
@@ -43,6 +44,8 @@ jobs:
     - name: Install Poetry
       run: pipx install poetry || pip install poetry
     - name: Install dependencies
-      run: poetry install --with dev
+      run: |
+          poetry lock --no-update
+          poetry install --with dev
     - name: Run tests
       run: poetry run pytest
