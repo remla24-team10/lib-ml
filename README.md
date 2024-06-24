@@ -1,6 +1,6 @@
-# package_template_tester
+<!-- # package_template_tester -->
 
-<div align="center">
+<!-- <div align="center"> -->
 
 <!-- [![Build status](https://github.com/test/package_template_tester/workflows/build/badge.svg?branch=master&event=push)](https://github.com/test/package_template_tester/actions?query=workflow%3Abuild)
 [![Python Version](https://img.shields.io/pypi/pyversions/package_template_tester.svg)](https://pypi.org/project/package_template_tester/)
@@ -14,7 +14,7 @@
 ![Coverage Report](assets/images/coverage.svg) -->
 
 
-</div>
+<!-- </div>
 
 ## Installation
 > Python 3.11 is needed for this library!
@@ -40,5 +40,98 @@ from lib_ml_remla import preprocess_data, split_data
 ## 🛡 License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+This project is licensed under the terms of the `MIT` license. See [LICENSE](https://github.com/remla24-team10/lib-ml/blob/main/LICENSE) for more details. -->
+
+
+# lib-ml-REMLA10-2024
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Overview
+
+`lib-ml-REMLA10-2024` provides essential functions for preprocessing and postprocessing data in machine learning projects. It includes utilities for data splitting, preprocessing, and evaluation.
+
+## Installation
+
+> Note: Python 3.11 is required for this library!
+> 
+
+### Using Poetry
+
+Inside your Python 3.11 virtual environment, run:
+
+```bash
+bashCopy code
+poetry add lib-ml-REMLA10-2024
+
+```
+
+### Using pip
+
+Alternatively, you can install the package with pip:
+
+```bash
+bashCopy code
+pip install lib-ml-REMLA10-2024
+
+```
+
+## Usage
+
+### Importing the Library
+
+You can import the necessary functions in your Python modules:
+
+```python
+pythonCopy code
+from lib_ml_remla import preprocess_data, split_data
+
+```
+
+### Example Usage
+
+### Preprocessing Data
+
+```python
+pythonCopy code
+from lib_ml_remla import preprocess_data, split_data
+
+# Example data
+train_data = ["1\tThis is a sample training sentence.", "0\tAnother training example."]
+test_data = ["1\tThis is a sample test sentence."]
+val_data = ["0\tThis is a sample validation sentence."]
+
+# Split data
+raw_X_train, raw_y_train, raw_X_val, raw_y_val, raw_X_test, raw_y_test = split_data(train_data, test_data, val_data)
+
+# Preprocess data
+X_train, y_train, X_val, y_val, X_test, y_test, char_index, tokenizer, encoder = preprocess_data(
+    raw_X_train, raw_y_train, raw_X_val, raw_y_val, raw_X_test, raw_y_test
+)
+
+```
+
+### Evaluating Results
+
+```python
+pythonCopy code
+from lib_ml_remla import predict_classes, evaluate_results
+from keras.models import load_model
+from sklearn.preprocessing import LabelEncoder
+
+# Load your trained model
+model = load_model('path_to_your_model')
+
+# Predict classes
+labels, probabilities = predict_classes(model, encoder, X_test)
+
+# Evaluate results
+results = evaluate_results(y_test, labels)
+print(results)
+
+```
+
+## License
 
 This project is licensed under the terms of the `MIT` license. See [LICENSE](https://github.com/remla24-team10/lib-ml/blob/main/LICENSE) for more details.
