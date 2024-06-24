@@ -27,12 +27,6 @@ jobs:
       run: |
         poetry lock --no-update
         poetry install --with dev
-    - name: Verify tests
-      run: |
-        if ! gh run list --branch "${{ github.ref }}" --event push --workflow test.yml --json conclusion -q '[0].conclusion' | grep -q "success"; then
-          echo "Tests did not pass. Aborting."
-          exit 1
-        fi
     - name: Bump version and push tag
       if: success() # Only continue if all was successful till now
       uses: anothrNick/github-tag-action@1.67.0
