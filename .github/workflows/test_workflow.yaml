@@ -1,0 +1,44 @@
+name: Test
+on:
+  push:
+
+jobs:
+  test:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        include:
+          # - name: 'check'
+          #   python: '3.11'
+          #   os: 'ubuntu-latest'
+          - name: 'py311 (ubuntu)'
+            python: '3.11'
+            python_arch: 'x64'
+            os: 'ubuntu-latest'
+          # - name: 'py311 (windows)'
+          #   python: '3.11'
+          #   python_arch: 'x64'
+          #   os: 'windows-latest'
+          # - name: 'py311 (macos)'
+          #   python: '3.11'
+          #   python_arch: 'arm64'
+          #   os: 'macos-latest'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install Poetry
+        run: pipx install poetry || pip install poetry
+      - name: Install dependencies
+        run: |
+          poetry lock --no-update
+          poetry install --with dev
+      - name: Run tests
+        run: poetry run pytest
