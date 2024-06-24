@@ -7,6 +7,7 @@ on:
 
 jobs:
   bump_version_and_publish:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -16,7 +17,7 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.merge_commit_sha }}
         fetch-depth: '0'
-    - name: Set up Python ${{ matrix.python }}
+    - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
@@ -24,14 +25,14 @@ jobs:
       run: pipx install poetry || pip install poetry
     - name: Install dependencies
       run: |
-          poetry lock --no-update
-          poetry install --with dev
+        poetry lock --no-update
+        poetry install --with dev
     - name: Verify tests
-        run: |
-          if ! gh run list --branch "${{ github.ref }}" --event push --workflow test.yml --json conclusion -q '[0].conclusion' | grep -q "success"; then
-            echo "Tests did not pass. Aborting."
-            exit 1
-          fi
+      run: |
+        if ! gh run list --branch "${{ github.ref }}" --event push --workflow test.yml --json conclusion -q '[0].conclusion' | grep -q "success"; then
+          echo "Tests did not pass. Aborting."
+          exit 1
+        fi
     - name: Bump version and push tag
       if: success() # Only continue if all was successful till now
       uses: anothrNick/github-tag-action@1.67.0

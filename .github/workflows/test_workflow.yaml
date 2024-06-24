@@ -4,7 +4,6 @@ on:
 
 jobs:
   test:
-    if: github.event.pull_request.merged == true
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
@@ -26,11 +25,10 @@ jobs:
           #   python: '3.11'
           #   python_arch: 'arm64'
           #   os: 'macos-latest'
-    steps:
+  steps:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.pull_request.merge_commit_sha }}
         fetch-depth: '0'
     - name: Set up Python ${{ matrix.python }}
       uses: actions/setup-python@v5
@@ -40,7 +38,7 @@ jobs:
       run: pipx install poetry || pip install poetry
     - name: Install dependencies
       run: |
-          poetry lock --no-update
-          poetry install --with dev
+        poetry lock --no-update
+        poetry install --with dev
     - name: Run tests
       run: poetry run pytest
