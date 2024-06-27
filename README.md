@@ -44,15 +44,15 @@ from lib_ml_remla import preprocess_data, split_data
 This project is licensed under the terms of the `MIT` license. See [LICENSE](https://github.com/remla24-team10/lib-ml/blob/main/LICENSE) for more details. -->
 
 
-# lib-ml-REMLA10-2024
+# 📦 lib-ml-REMLA10-2024
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Overview
+## 📝 Overview
 
 `lib-ml-REMLA10-2024` provides essential functions for preprocessing and postprocessing data in machine learning projects. It includes utilities for data splitting, preprocessing, and evaluation.
 
-## Installation
+## 🛠️ Installation
 
 > Note: Python 3.11 is required for this library!
 > 
@@ -77,7 +77,7 @@ pip install lib-ml-REMLA10-2024
 
 ```
 
-## Usage
+## 📚 Usage
 
 ### Importing the Library
 
@@ -89,9 +89,9 @@ from lib_ml_remla import preprocess_data, split_data
 
 ```
 
-### Example Usage
+###  Usage examples
 
-### Preprocessing Data
+### 🔄 Preprocessing Data
 
 ```python
 pythonCopy code
@@ -112,7 +112,7 @@ X_train, y_train, X_val, y_val, X_test, y_test, char_index, tokenizer, encoder =
 
 ```
 
-### Evaluating Results
+### 📈 Evaluating Results
 
 ```python
 pythonCopy code
@@ -132,6 +132,6 @@ print(results)
 
 ```
 
-## License
+## 🛡 License
 
 This project is licensed under the terms of the `MIT` license. See [LICENSE](https://github.com/remla24-team10/lib-ml/blob/main/LICENSE) for more details.
