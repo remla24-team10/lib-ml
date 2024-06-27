@@ -64,7 +64,6 @@ Inside your Python 3.11 virtual environment, run:
 ```bash
 bashCopy code
 poetry add lib-ml-REMLA10-2024
-
 ```
 
 ### Using pip
@@ -74,7 +73,6 @@ Alternatively, you can install the package with pip:
 ```bash
 bashCopy code
 pip install lib-ml-REMLA10-2024
-
 ```
 
 ## 📚 Usage
@@ -86,7 +84,6 @@ You can import the necessary functions in your Python modules:
 ```python
 pythonCopy code
 from lib_ml_remla import preprocess_data, split_data
-
 ```
 
 ###  Usage examples
@@ -109,7 +106,6 @@ raw_X_train, raw_y_train, raw_X_val, raw_y_val, raw_X_test, raw_y_test = split_d
 X_train, y_train, X_val, y_val, X_test, y_test, char_index, tokenizer, encoder = preprocess_data(
     raw_X_train, raw_y_train, raw_X_val, raw_y_val, raw_X_test, raw_y_test
 )
-
 ```
 
 ### 📈 Evaluating Results
@@ -129,7 +125,6 @@ labels, probabilities = predict_classes(model, encoder, X_test)
 # Evaluate results
 results = evaluate_results(y_test, labels)
 print(results)
-
 ```
 
 ## 🛡 License
