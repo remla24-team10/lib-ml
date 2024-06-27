@@ -64,7 +64,6 @@ This project is licensed under the terms of the `MIT` license. See [LICENSE](htt
 Inside your Python 3.11 virtual environment, run:
 
 ```bash
-bashCopy code
 poetry add lib-ml-REMLA10-2024
 ```
 
@@ -73,7 +72,6 @@ poetry add lib-ml-REMLA10-2024
 Alternatively, you can install the package with pip:
 
 ```bash
-bashCopy code
 pip install lib-ml-REMLA10-2024
 ```
 
@@ -84,7 +82,6 @@ pip install lib-ml-REMLA10-2024
 You can import the necessary functions in your Python modules:
 
 ```python
-pythonCopy code
 from lib_ml_remla import preprocess_data, split_data
 ```
 
@@ -93,7 +90,6 @@ from lib_ml_remla import preprocess_data, split_data
 ### 🔄 Preprocessing Data
 
 ```python
-pythonCopy code
 from lib_ml_remla import preprocess_data, split_data
 
 # Example data
@@ -113,7 +109,6 @@ X_train, y_train, X_val, y_val, X_test, y_test, char_index, tokenizer, encoder =
 ### 📈 Evaluating Results
 
 ```python
-pythonCopy code
 from lib_ml_remla import predict_classes, evaluate_results
 from keras.models import load_model
 from sklearn.preprocessing import LabelEncoder
